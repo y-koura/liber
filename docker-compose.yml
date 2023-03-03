@@ -1,0 +1,19 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    tty: true
+    volumes:
+      - .:/app
+    ports:
+      - '3000:3000'
+  db:
+    image: postgres
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    env_file:
+      - .env
+    ports:
+      - 5435:5432
